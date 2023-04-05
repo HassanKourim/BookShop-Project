@@ -94,6 +94,15 @@ public class Book {
         }
         return null;
     }
+    
+    private static Book getBookbyAuthor(String nameAuthor){
+    for(Book book : BooksList){
+        if(book.author.equals(nameAuthor)){
+            return book;
+        }    
+    }
+        return null;
+    }
 
     public static boolean updateBook(Book newBook, Book oldBook) {
         int index = -1;
@@ -219,16 +228,41 @@ public class Book {
     }
 
     public static void search(Scanner in) {
-        System.out.println("Enter the name of book");
-        String nameBook = in.next();
-        Book book = Book.getBookByName(nameBook);
-        if (book == null) {
-            System.out.println(nameBook + " isn't found !");
-        } else {
-            System.out.println("Name        Price         Author");
-                System.out.println(book.getName() + "         "
-                        + book.getPrice()+ "          " 
-                        + book.getAuthor());
+        System.out.println("----Search Menu");
+        System.out.println("1- Search by Name : ");
+        System.out.println("2- Search by Author");
+        System.out.println("Enter the number of choise :");
+        int n = in.nextInt();
+        switch(n){
+            case 1 :
+                System.out.println("Enter the name of book");     
+                String nameBook = in.next();
+                Book book = Book.getBookByName(nameBook);
+                if (book == null) {
+                    System.out.println(nameBook + " isn't found !");
+            } else {
+                System.out.println("Name        Price         Author");
+                    System.out.println(book.getName() + "         "
+                            + book.getPrice()+ "          " 
+                            + book.getAuthor());
+                }
+            case 2:
+                System.out.println("Enter the name of Author");
+                String nameAuthor = in.next();
+                Book book2 = Book.getBookbyAuthor(nameAuthor);
+                if (book2 == null) {
+                    System.out.println(nameAuthor + " isn't found !");
+                }else {
+                System.out.println("Name        Price         Author");
+                System.out.println(book2.getName() + "         "
+                            + book2.getPrice()+ "          " 
+                            + book2.getAuthor());
+                }
         }
+        
+
+        
+ 
     }
+
 }
